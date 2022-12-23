@@ -1,0 +1,6 @@
+{
+    "author": "Curtis Newton and Younès B.",
+    "version": "0.1.0",
+    "description": "This is a terminal where you can enter commands. It also includes a web module, where you can configure servers.",
+    "website": "https://www.github.com/CaptainFuture-CN/cn-shell-0.1.0/"
+}
