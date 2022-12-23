@@ -7,7 +7,7 @@ except ImportError as err: print(f"An ImportError occured. Reason: {err}", file=
 # Constants
 command: str
 
-if len(sys.argv) <= 1: DEFAULT_DIR = f"C:/Users/{os.getlogin()}"
+if len(sys.argv) <= 1: DEFAULT_DIR = ""
 else: DEFAULT_DIR = sys.argv[1] # Make available for command arguments
 
 DIR = DEFAULT_DIR
@@ -17,9 +17,8 @@ file = open("info.json")
 JSON_INFO_DATA = json.load(file)
 file.close()
 
-
 print(colorama.Fore.BLUE + f"CN-Shell {JSON_INFO_DATA['version']}, running on {platform.system()} {platform.version()}.")
-print(colorama.Fore.BLUE + "CN-Shell, written by Curtis N. and Younès B.")
+print("CN-Shell, written by Curtis N. and Younès B.")
 
 while True:
     command = input(colorama.Fore.GREEN + f"{DIR} (stdin) -> ")
@@ -31,5 +30,9 @@ while True:
     elif command == "time": print(time.time())
 
     else:
-        try: os.system(f"python src/{cmd_without_args[0]}.py {command}")
-        except: print(colorama.Fore.RED + f"Error: unknown command: {command}")
+        try:
+            cmdpathslist = [i for i in os.listdir()]
+            if command in os.listdir("src"): os.system(f"python src/{cmd_without_args[0]}.py {command}")
+
+
+        except: print(colorama.Fore.RED + f"Error: unknown command: {command}.")
