@@ -6,7 +6,7 @@ This is free and open-source software.
 
 With this shell, you can:
 - Handle your system
-- Write on files or streams
+- Write/Read on files or streams
 - Create and configure web servers and clients
 - For the Python developers: You can create your own commands by writing Python files. Then you have to type the command
 "link" to set the directory where CNShell has to search your commands.
