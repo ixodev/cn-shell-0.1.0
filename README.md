@@ -15,5 +15,5 @@ This shell works with Python. You don´t need to install Python to use this shel
 (example: create your own commands).
 
 - This is the first (and beta) version.
-- You can find us on: github.com/CaptainFuture-CN.
+- You can find us on: www.github.com/CaptainFuture-CN.
 - It would be nice of you if you could put a star on this repository.
