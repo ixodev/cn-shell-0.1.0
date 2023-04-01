@@ -1,23 +1,28 @@
-import socket, sys, threading
+import socket, threading, sys
 
-ADDRESS, PORT = sys.argv[2], sys.argv[3]
+SERVER_HOST = sys.argv[2]
+SERVER_PORT = sys.argv[3]
 
 s = socket.socket()
-s.connect((str(ADDRESS), int(PORT)))
+print(f"Connecting to {SERVER_HOST}:{SERVER_PORT}...")
+s.connect((SERVER_HOST, SERVER_PORT))
+print("You are connected.")
+name = input("Please enter your name: ")
 
-name = input("Name: ")
-
-def listen():
+def listen_msgs():
     while True:
-        msg = s.recv(1024).decode()
-        print(msg)
+        message = s.recv(1024).decode()
+        print("\n" + message)
 
-t = threading.Thread(target=listen, daemon=True)
-t.start()
+thread = threading.Thread(target=listen_msgs, daemon=True)
+thread.start()
 
 while True:
-    message =  input("Message:")
-    if message == "/quit": break
-    s.send(message.encode())
+
+    msg = input("Message to the server: ")
+
+    if msg == "//quit": break
+
+    s.send(msg.encode())
 
 s.close()

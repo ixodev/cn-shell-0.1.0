@@ -1,17 +1,18 @@
 import sys, socket, threading
 
-try: HOSTNAME, PORT = sys.argv[2], sys.argv[3]
+try: PORT = sys.argv[2]
 except:
     print("The syntax of the command is not correct.", file=sys.stderr)
     quit(0)
 
 server = socket.socket()
-server.bind((str(HOSTNAME), int(PORT)))
+server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server.bind(("0.0.0.0", int(PORT)))
 server.listen(5)
 
 clients = []
 
-print(f"Server listening on {HOSTNAME}:{PORT}.")
+print(f"Server listening on 0.0.0.0:{PORT}.")
 
 def listen() -> None:
     while True:
